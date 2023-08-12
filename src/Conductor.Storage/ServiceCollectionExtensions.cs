@@ -4,6 +4,7 @@ using Conductor.Storage.Services;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using WorkflowCore.Models;
+using WorkflowCore.Persistence.MongoDB.Services;
 
 namespace Conductor.Storage
 {
@@ -23,7 +24,7 @@ namespace Conductor.Storage
             {
                 var client = new MongoClient(mongoUrl);
                 var db = client.GetDatabase(databaseName);
-                return new WorkflowPersistenceProvider(db);
+                return new MongoPersistenceProvider(db);
             });
             return options;
         }
